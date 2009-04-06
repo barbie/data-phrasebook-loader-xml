@@ -6,7 +6,7 @@ use base qw( Data::Phrasebook::Loader::Base Data::Phrasebook::Debug );
 use XML::Parser;
 use IO::File;
 
-our $VERSION = '0.05';
+our $VERSION = '0.06';
 
 =head1 NAME
 
@@ -20,6 +20,7 @@ Data::Phrasebook::Loader::XML - Absract your phrases with XML.
         class  => 'Fnerk',
         loader => 'XML',
         file   => 'phrases.xml',
+        dict   => 'Dictionary',     # optional
     );
 
   OR
@@ -33,8 +34,12 @@ Data::Phrasebook::Loader::XML - Absract your phrases with XML.
         }
     );
 
-    $q->delimiters( qr{ \[% \s* (\w+) \s* %\] }x );
+    # simple keyword to phrase mapping
     my $phrase = $q->fetch($keyword);
+
+    # keyword to phrase mapping with parameters
+    $q->delimiters( qr{ \[% \s* (\w+) \s* %\] }x );
+    my $phrase = $q->fetch($keyword,{this => 'that'});
 
 =head1 ABSTRACT
 
@@ -57,8 +62,8 @@ The XML document type definition is as followed:
 
  <?xml version="1.0"?>
  <!DOCTYPE phrasebook [
-	       <!ELEMENT phrasebook (dictionary)*>              
-	       <!ELEMENT dictionary (phrase)*>
+           <!ELEMENT phrasebook (dictionary)*>              
+           <!ELEMENT dictionary (phrase)*>
                <!ATTLIST dictionary name CDATA #REQUIRED>
                <!ELEMENT phrase (#PCDATA)>
                <!ATTLIST phrase name CDATA #REQUIRED>
@@ -68,8 +73,8 @@ An example XML file:
 
  <?xml version="1.0"?>
  <!DOCTYPE phrasebook [
-	       <!ELEMENT phrasebook (dictionary)*>              
-	       <!ELEMENT dictionary (phrase)*>
+           <!ELEMENT phrasebook (dictionary)*>              
+           <!ELEMENT dictionary (phrase)*>
                <!ATTLIST dictionary name CDATA #REQUIRED>
                <!ELEMENT phrase (#PCDATA)>
                <!ATTLIST phrase name CDATA #REQUIRED>
@@ -110,6 +115,19 @@ The parameter 'ignore_whitespace', will remove any extra whitespace from the
 phrase. This includes leading and trailing whitespace. Whitespace around a
 newline, including the newline, is replace with a single space.
 
+If you need to use the '<' symbol in your XML, you'll need to use '&lt;'
+instead. 
+
+    # <phrase name="TEST">$a &lt; $b</phrase>
+
+    my $q = Data::Phrasebook->new(
+        class  => 'Fnerk',
+        loader => 'XML',
+        file   => 'phrases.xml',
+    );
+
+    my $phrase = $q->fetch('TEST');    # returns '$a < $b'
+
 =head1 INHERITANCE
 
 L<Data::Phrasebook::Loader::XML> inherits from the base class
@@ -134,36 +152,37 @@ my $phrases;
 sub load
 {
     my ($class, $file, $dict) = @_;
-	my $ignore_whitespace = 0;
-	if(ref $file eq 'HASH') {
-		$ignore_whitespace = $file->{ignore_whitespace};
-		$file = $file->{file};
-	}
+    my $ignore_whitespace = 0;
+
+    if(ref $file eq 'HASH') {
+        $ignore_whitespace = $file->{ignore_whitespace};
+        $file = $file->{file};
+    }
     croak "No file given as argument!" unless defined $file;
     croak "Cannot access file!" unless -r $file;
 
-	$dict = ''	unless($dict);	# use default
+    $dict = ''  unless($dict);  # use default
 
-	my $read_on = 1;
-	my $default_read = 0;
-	my ($phrase_name,$phrase_value);
+    my $read_on = 1;
+    my $default_read = 0;
+    my ($phrase_name,$phrase_value);
 
-	# create the XML parser object
+    # create the XML parser object
     my $parser = XML::Parser->new(ErrorContext => 2);
     $parser->setHandlers(
         Start => sub {
             my $expat = shift;
             my $element = shift;
-            my %attributes = (@_);	    
-	    
+            my %attributes = (@_);      
+        
             # deal with the dictionary element
             if ($element =~ /dictionary/) {
-				my $name = $attributes{name};
+                my $name = $attributes{name};
                 croak('The dictionary element must have the name attribute')
-					unless (defined($name));
+                    unless (defined($name));
 
-				# if the default was already read, and the dictionary name
-				# is not the requested one, we should not read on.
+                # if the default was already read, and the dictionary name
+                # is not the requested one, we should not read on.
                 $read_on = ($default_read && $name ne $dict) ? 0 : 1;
             }
 
@@ -171,53 +190,53 @@ sub load
             if ($element =~ /^phrase$/) {
                 $phrase_name = $attributes{name};
                 croak('The phrase element must have the name attribute')
-					unless (defined($phrase_name));
+                    unless (defined($phrase_name));
             }
 
-			$phrase_value = '';	# ensure a clean phrase
+            $phrase_value = ''; # ensure a clean phrase
         }, # of Start
-	
+    
         End => sub {
             my $expat = shift;
             my $element = shift;
-			if ($element =~ /^dictionary$/i) {
-				$default_read = 1;
-			}
-	    
-			if ($element =~ /^phrase$/i) {
-				if ($read_on) {
-					if($ignore_whitespace) {
-						$phrase_value =~ s/^\s+//;
-						$phrase_value =~ s/\s+$//;
-						$phrase_value =~ s/\s*\n\s*/ /gs;
-					}
-					$phrases->{$phrase_name} = $phrase_value;
-					$phrase_value = '';
-				}
+            if ($element =~ /^dictionary$/i) {
+                $default_read = 1;
+            }
+        
+            if ($element =~ /^phrase$/i) {
+                if ($read_on) {
+                    if($ignore_whitespace) {
+                        $phrase_value =~ s/^\s+//;
+                        $phrase_value =~ s/\s+$//;
+                        $phrase_value =~ s/\s*\n\s*/ /gs;
+                    }
+                    $phrases->{$phrase_name} = $phrase_value;
+                    $phrase_value = '';
+                }
             }
         }, # of End
-	
+    
         Char => sub {
             my $expat = shift;
             my $string = shift;
 
-			# if $read_on flag is true and the string is not empty we set the 
-			# value of the phrase.
-			if ($read_on && length($string)) {
-				$phrase_value .= $string;
-			}		
+            # if $read_on flag is true and the string is not empty we set the 
+            # value of the phrase.
+            if ($read_on && length($string)) {
+                $phrase_value .= $string;
+            }       
         } # of Char
     ); # of the parser setHandlers class
 
     my $fh = IO::File->new($file);
-    croak("Could not open $file for reading.")	unless ($fh);
+    croak("Could not open $file for reading.")  unless ($fh);
 
     eval { $parser->parse($fh) };
-    croak("Could not parse the file [$file]: ".$@)	if ($@);
+    croak("Could not parse the file [$file]: ".$@)  if ($@);
 
     $class->{phrases} = $phrases;
 }
-	
+    
 =head2 get
 
 Returns the phrase stored in the phrasebook, for a given keyword.
@@ -227,9 +246,9 @@ Returns the phrase stored in the phrasebook, for a given keyword.
 =cut
 
 sub get {
-	my ($class, $key) = @_;
-	return undef	unless($key);
-	return $class->{phrases}->{$key} || undef;
+    my ($class, $key) = @_;
+    return undef    unless($key);
+    return $class->{phrases}->{$key} || undef;
 }
 
 1;

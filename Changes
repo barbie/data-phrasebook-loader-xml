@@ -1,5 +1,8 @@
 # Changes log for Data::Phrasebook::Loader::XML
 
+0.06    14/05/2005
+        - POD update for the use of &lt; to '<' in your phrasebook (Bob Hicks)
+
 0.05    25/03/2005
         - Added DSLIP information
         - Rewrote test scripts
