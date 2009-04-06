@@ -1,0 +1,50 @@
+--- #YAML:1.0
+# http://module-build.sourceforge.net/META-spec.html
+distribution_type: module
+name: Phrasebook
+date: 3 Aug 2003
+author: SPOON
+version: 0.16
+license: perl
+
+conflicts: {}
+
+build_requires:
+  DBD::SQLite: 0.28
+  DBI: 1.38
+  Test::More: 0.47
+recommends:
+  File::Find::Rule: 0.20
+requires:
+  Class::MethodMaker: 1.11
+  YAML: 0.35
+
+private:
+  directory:
+    - t
+
+provides:
+  Phrasebook:
+    file: lib/Phrasebook.pm
+    version: 0.16
+  Phrasebook::generic:
+    file: lib/Phrasebook/generic.pm
+    version: 0.16
+  Phrasebook::Loader:
+    file: lib/Phrasebook/Loader.pm
+    version: 0.16
+  Phrasebook::Loader::YAML:
+    file: lib/Phrasebook/Loader/YAML.pm
+    version: 0.16
+  Phrasebook::Plain:
+    file: lib/Phrasebook/Plain.pm
+    version: 0.16
+  Phrasebook::SQL:
+    file: lib/Phrasebook/SQL.pm
+    version: 0.16
+  Phrasebook::SQL::Query:
+    file: lib/Phrasebook/SQL/Query.pm
+    version: 0.16
+
+dynamic_config: 0
+generated_by: docmaker version 1.01
