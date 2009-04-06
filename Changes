@@ -1,5 +1,9 @@
 # Changes log for Data::Phrasebook::Loader::XML
 
+0.12    01/03/2007
+	- Fixed META.yml typos.
+	- Added META.yml test script.
+
 0.11	22/02/2007
 	- Handwritten META.yml to conform to current specs.
 	- Changed all instances of LICENCE to LICENSE as *apparently*, to all

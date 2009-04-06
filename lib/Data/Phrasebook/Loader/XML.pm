@@ -6,7 +6,7 @@ use base qw( Data::Phrasebook::Loader::Base Data::Phrasebook::Debug );
 use XML::Parser;
 use IO::File;
 
-our $VERSION = '0.11';
+our $VERSION = '0.12';
 
 =head1 NAME
 
@@ -356,7 +356,7 @@ be forthcoming, please feel free to (politely) remind me.
   This module is free software; you can redistribute it and/or 
   modify it under the same terms as Perl itself.
 
-The full text of the licences can be found in the F<Artistic> and
+The full text of the licenses can be found in the F<Artistic> and
 F<COPYING> files included with this module, or in L<perlartistic> and
 L<perlgpl> in Perl 5.8.1 or later.
 
