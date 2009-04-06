@@ -6,7 +6,7 @@ use base qw( Data::Phrasebook::Loader::Base Data::Phrasebook::Debug );
 use XML::Parser;
 use IO::File;
 
-our $VERSION = '0.04';
+our $VERSION = '0.05';
 
 =head1 NAME
 
@@ -140,6 +140,9 @@ sub load
 		$file = $file->{file};
 	}
     croak "No file given as argument!" unless defined $file;
+    croak "Cannot access file!" unless -r $file;
+
+	$dict = ''	unless($dict);	# use default
 
 	my $read_on = 1;
 	my $default_read = 0;
@@ -206,13 +209,10 @@ sub load
         } # of Char
     ); # of the parser setHandlers class
 
-    # open the xml file as a locked file and parse it
     my $fh = IO::File->new($file);
     croak("Could not open $file for reading.")	unless ($fh);
 
-    eval { $parser->parse($fh) }; # eval used, due to the fact that the parse 
-                                  # function dies when it encounters a parsing
-								  # error.
+    eval { $parser->parse($fh) };
     croak("Could not parse the file [$file]: ".$@)	if ($@);
 
     $class->{phrases} = $phrases;
@@ -228,7 +228,8 @@ Returns the phrase stored in the phrasebook, for a given keyword.
 
 sub get {
 	my ($class, $key) = @_;
-	return $class->{phrases}{$key};
+	return undef	unless($key);
+	return $class->{phrases}->{$key} || undef;
 }
 
 1;
@@ -249,6 +250,14 @@ able to pinpoint problems or even supply a patch.
 
 Fixes are dependant upon their severity and my availablity. Should a fix not
 be forthcoming, please feel free to (politely) remind me.
+
+=head1 DSLIP
+
+  b - Beta testing
+  d - Developer
+  p - Perl-only
+  O - Object oriented
+  p - Standard-Perl: user may choose between GPL and Artistic
 
 =head1 AUTHOR
 
