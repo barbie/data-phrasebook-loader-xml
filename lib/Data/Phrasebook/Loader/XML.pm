@@ -6,7 +6,7 @@ use base qw( Data::Phrasebook::Loader::Base Data::Phrasebook::Debug );
 use XML::Parser;
 use IO::File;
 
-our $VERSION = '0.09';
+our $VERSION = '0.10';
 
 =head1 NAME
 
@@ -267,7 +267,7 @@ Returns the list of dictionaries available.
 =cut
 
 sub dicts {
-	my $class = shift;
+    my $class = shift;
     return @{$class->{dictionaries}};
 }
 
@@ -275,14 +275,14 @@ sub dicts {
 
 Returns the list of keywords available.
 
-   my @dicts = $loader->keywords();
+   my @keywords = $loader->keywords();
 
 =cut
 
 sub keywords {
-	my $class = shift;
+    my $class = shift;
     return ()    unless($class->{phrases});
-    return keys %{$class->{phrases}};
+    return sort keys %{$class->{phrases}};
 }
 
 1;

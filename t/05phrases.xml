@@ -10,8 +10,10 @@
  <phrasebook>
  <dictionary name="DEF">
    <phrase name="foo">I'm original foo.</phrase>
+   <phrase name="bar">I'm original bar</phrase>
  </dictionary>
  <dictionary name="ONE">
    <phrase name="foo">I'm new foo.</phrase>
+   <phrase name="baz">I'm original baz</phrase>
  </dictionary>
  </phrasebook>

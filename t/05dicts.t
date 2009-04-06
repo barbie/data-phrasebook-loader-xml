@@ -22,6 +22,6 @@ my @expected = qw( DEF ONE );
 my @dicts = $book->dicts();
 is_deeply( \@dicts, \@expected );
 
-my @tkeys = qw( foo );
+my @tkeys = qw( bar baz foo );
 my @keywords = $book->keywords();
 is_deeply( \@keywords, \@tkeys );

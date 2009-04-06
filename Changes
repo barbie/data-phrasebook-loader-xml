@@ -1,13 +1,16 @@
 # Changes log for Data::Phrasebook::Loader::XML
 
+0.10	22/09/2005
+	- Added sorting to keywords().
+
 0.09	09/08/2005
-	- upped prerequisite for Data::Phrasebook to 0.23.
-	- added keywords() support.
-	- added POD for continuation lines.
-	- added 'ignore_newlines' option.
+	- Upped prerequisite for Data::Phrasebook to 0.23.
+	- Added keywords() support.
+	- Added POD for continuation lines.
+	- Added 'ignore_newlines' option.
 
 0.08	15/06/2005
-	- upped prerequisite for Data::Phrasebook to 0.22.
+	- Upped prerequisite for Data::Phrasebook to 0.22.
 
 0.07    13/06/2005
         - Added dicts() support
