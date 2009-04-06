@@ -7,6 +7,8 @@ WriteMakefile(
         'XML::Parser'      => '0',
         'Test::More'       => '0.47',
     },
+	NO_META			=> 1,
+
     ($] >= 5.005 ?
       (ABSTRACT_FROM => 'lib/Data/Phrasebook/Loader/XML.pm',
        AUTHOR        => 'Barbie <barbie@cpan.org>') : ()),

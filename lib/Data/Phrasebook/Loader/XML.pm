@@ -6,7 +6,7 @@ use base qw( Data::Phrasebook::Loader::Base Data::Phrasebook::Debug );
 use XML::Parser;
 use IO::File;
 
-our $VERSION = '0.10';
+our $VERSION = '0.11';
 
 =head1 NAME
 
@@ -254,7 +254,7 @@ Returns the phrase stored in the phrasebook, for a given keyword.
 
 sub get {
     my ($class, $key) = @_;
-    return undef    unless($key);
+    return    unless($key);
     return $class->{phrases}->{$key} || undef;
 }
 
@@ -348,12 +348,13 @@ be forthcoming, please feel free to (politely) remind me.
   Barbie, <barbie@cpan.org>
   for Miss Barbell Productions <http://www.missbarbell.co.uk>.
 
-=head1 LICENCE AND COPYRIGHT
+=head1 COPYRIGHT AND LICENSE
 
-  Copyright (C) 2004-2005 Barbie for Miss Barbell Productions.
+  Copyright (C) 2004-2007 Barbie for Miss Barbell Productions.
+  All Rights Reserved.
 
-  This library is free software; you can redistribute it and/or modify
-  it under the same terms as Perl itself.
+  This module is free software; you can redistribute it and/or 
+  modify it under the same terms as Perl itself.
 
 The full text of the licences can be found in the F<Artistic> and
 F<COPYING> files included with this module, or in L<perlartistic> and

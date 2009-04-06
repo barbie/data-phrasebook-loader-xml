@@ -1,9 +1,10 @@
 Artistic
 Changes
 COPYING
+examples/examples.txt
 INSTALL
 lib/Data/Phrasebook/Loader/XML.pm
-LICENCE
+LICENSE
 Makefile.PL
 MANIFEST
 MANIFEST.SKIP

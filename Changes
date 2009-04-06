@@ -1,5 +1,14 @@
 # Changes log for Data::Phrasebook::Loader::XML
 
+0.11	22/02/2007
+	- Handwritten META.yml to conform to current specs.
+	- Changed all instances of LICENCE to LICENSE as *apparently*, to all
+	  non-British users of this module, this a bug! I beg to differ -
+	  http://dictionary.reference.com/search?q=licence
+	- Added an examples directory. Nothing in it yet, except a request
+	  for interesting scripts.
+	- Minor fix suggested by Perl::Critic.
+
 0.10	22/09/2005
 	- Added sorting to keywords().
 
