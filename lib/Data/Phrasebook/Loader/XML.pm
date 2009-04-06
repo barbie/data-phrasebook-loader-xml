@@ -6,7 +6,7 @@ use base qw( Data::Phrasebook::Loader::Base Data::Phrasebook::Debug );
 use XML::Parser;
 use IO::File;
 
-our $VERSION = '0.06';
+our $VERSION = '0.07';
 
 =head1 NAME
 
@@ -153,6 +153,7 @@ sub load
 {
     my ($class, $file, $dict) = @_;
     my $ignore_whitespace = 0;
+    my @dictionaries;
 
     if(ref $file eq 'HASH') {
         $ignore_whitespace = $file->{ignore_whitespace};
@@ -180,6 +181,7 @@ sub load
                 my $name = $attributes{name};
                 croak('The dictionary element must have the name attribute')
                     unless (defined($name));
+                push @dictionaries, $name;
 
                 # if the default was already read, and the dictionary name
                 # is not the requested one, we should not read on.
@@ -208,7 +210,7 @@ sub load
                     if($ignore_whitespace) {
                         $phrase_value =~ s/^\s+//;
                         $phrase_value =~ s/\s+$//;
-                        $phrase_value =~ s/\s*\n\s*/ /gs;
+                        $phrase_value =~ s/\s*[\r\n]+\s*/ /gs;
                     }
                     $phrases->{$phrase_name} = $phrase_value;
                     $phrase_value = '';
@@ -234,6 +236,7 @@ sub load
     eval { $parser->parse($fh) };
     croak("Could not parse the file [$file]: ".$@)  if ($@);
 
+    $class->{dictionaries} = \@dictionaries;
     $class->{phrases} = $phrases;
 }
     
@@ -249,6 +252,19 @@ sub get {
     my ($class, $key) = @_;
     return undef    unless($key);
     return $class->{phrases}->{$key} || undef;
+}
+
+=head2 dicts
+
+Returns the list of dictionaries available.
+
+   my @dicts = $loader->dicts();
+
+=cut
+
+sub dicts {
+	my $class = shift;
+    return @{$class->{dictionaries}};
 }
 
 1;
