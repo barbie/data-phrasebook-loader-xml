@@ -1,5 +1,8 @@
 # Changes log for Data::Phrasebook::Loader::XML
 
+0.13	current
+	- removed 5.006 dependency.
+
 0.12    01/03/2007
 	- Fixed META.yml typos.
 	- Added META.yml test script.

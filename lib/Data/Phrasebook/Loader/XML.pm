@@ -6,7 +6,7 @@ use base qw( Data::Phrasebook::Loader::Base Data::Phrasebook::Debug );
 use XML::Parser;
 use IO::File;
 
-our $VERSION = '0.12';
+my $VERSION = '0.13';
 
 =head1 NAME
 
@@ -47,12 +47,12 @@ This module provides a loader class for phrasebook implementations using XML.
 
 =head1 DESCRIPTION
 
-This class loader implements phrasebook patterns using XML. 
+This class loader implements phrasebook patterns using XML.
 
-Phrases can be contained within one or more dictionaries, with each phrase 
-accessible via a unique key. Phrases may contain placeholders, please see 
+Phrases can be contained within one or more dictionaries, with each phrase
+accessible via a unique key. Phrases may contain placeholders, please see
 L<Data::Phrasebook> for an explanation of how to use these. Groups of phrases
-are kept in a dictionary. The first dictionary is used as the default, unless 
+are kept in a dictionary. The first dictionary is used as the default, unless
 a specific dictionary is requested.
 
 In this implementation, the dictionaries and phrases are implemented with an
@@ -62,7 +62,7 @@ The XML document type definition is as followed:
 
  <?xml version="1.0"?>
  <!DOCTYPE phrasebook [
-           <!ELEMENT phrasebook (dictionary)*>              
+           <!ELEMENT phrasebook (dictionary)*>
            <!ELEMENT dictionary (phrase)*>
                <!ATTLIST dictionary name CDATA #REQUIRED>
                <!ELEMENT phrase (#PCDATA)>
@@ -73,13 +73,13 @@ An example XML file:
 
  <?xml version="1.0"?>
  <!DOCTYPE phrasebook [
-           <!ELEMENT phrasebook (dictionary)*>              
+           <!ELEMENT phrasebook (dictionary)*>
            <!ELEMENT dictionary (phrase)*>
                <!ATTLIST dictionary name CDATA #REQUIRED>
                <!ELEMENT phrase (#PCDATA)>
                <!ATTLIST phrase name CDATA #REQUIRED>
  ]>
- 
+
  <phrasebook>
  <dictionary name="EN">
    <phrase name="HELLO_WORLD">Hello World!!!</phrase>
@@ -103,11 +103,11 @@ An example XML file:
  </dictionary>
  </phrasebook>
 
-Note that, unlike L<Class::Phrasebook>, this implementation does not search 
-the default dictionary if a phrase is not found in the specified dictionary. 
+Note that, unlike L<Class::Phrasebook>, this implementation does not search
+the default dictionary if a phrase is not found in the specified dictionary.
 This may change in the future.
 
-Each phrase should have a unique name within a dictionary, which is then used 
+Each phrase should have a unique name within a dictionary, which is then used
 as a reference key. Within the phrase text placeholders can be used, which are
 then replaced with the appropriate values once the get() method is called.
 
@@ -116,7 +116,7 @@ phrase. This includes leading and trailing whitespace. Whitespace around a
 newline, including the newline, is replace with a single space.
 
 If you need to use the '<' symbol in your XML, you'll need to use '&lt;'
-instead. 
+instead.
 
     # <phrase name="TEST">$a &lt; $b</phrase>
 
@@ -175,8 +175,8 @@ sub load
         Start => sub {
             my $expat = shift;
             my $element = shift;
-            my %attributes = (@_);      
-        
+            my %attributes = (@_);
+
             # deal with the dictionary element
             if ($element =~ /dictionary/) {
                 my $name = $attributes{name};
@@ -198,14 +198,14 @@ sub load
 
             $phrase_value = ''; # ensure a clean phrase
         }, # of Start
-    
+
         End => sub {
             my $expat = shift;
             my $element = shift;
             if ($element =~ /^dictionary$/i) {
                 $default_read = 1;
             }
-        
+
             if ($element =~ /^phrase$/i) {
                 if ($read_on) {
                     if($ignore_whitespace) {
@@ -221,16 +221,16 @@ sub load
                 }
             }
         }, # of End
-    
+
         Char => sub {
             my $expat = shift;
             my $string = shift;
 
-            # if $read_on flag is true and the string is not empty we set the 
+            # if $read_on flag is true and the string is not empty we set the
             # value of the phrase.
             if ($read_on && length($string)) {
                 $phrase_value .= $string;
-            }       
+            }
         } # of Char
     ); # of the parser setHandlers class
 
@@ -243,7 +243,7 @@ sub load
     $class->{dictionaries} = \@dictionaries;
     $class->{phrases} = $phrases;
 }
-    
+
 =head2 get
 
 Returns the phrase stored in the phrasebook, for a given keyword.
@@ -292,7 +292,7 @@ __END__
 =head1 CONTINUATION LINES
 
 As a configuration option (default is off), continuation lines can be
-used via the use of the 'ignore_whitespace' or 'ignore_newlines' options 
+used via the use of the 'ignore_whitespace' or 'ignore_newlines' options
 as follows:
 
     my $q = Data::Phrasebook->new(
@@ -304,7 +304,7 @@ as follows:
         }
     );
 
-Using 'ignore_whitespace', all whitespace (including newlines) will be 
+Using 'ignore_whitespace', all whitespace (including newlines) will be
 collapsed into a single space character, with leading and trailing whitespace
 characters removed.
 
@@ -329,8 +329,8 @@ L<Data::Phrasebook>.
 There are no known bugs at the time of this release. However, if you spot a
 bug or are experiencing difficulties, that is not explained within the POD
 documentation, please send an email to barbie@cpan.org or submit a bug to the
-RT system (http://rt.cpan.org/). However, it would help greatly if you are 
-able to pinpoint problems or even supply a patch. 
+RT system (http://rt.cpan.org/). However, it would help greatly if you are
+able to pinpoint problems or even supply a patch.
 
 Fixes are dependant upon their severity and my availablity. Should a fix not
 be forthcoming, please feel free to (politely) remind me.
@@ -351,9 +351,8 @@ be forthcoming, please feel free to (politely) remind me.
 =head1 COPYRIGHT AND LICENSE
 
   Copyright (C) 2004-2007 Barbie for Miss Barbell Productions.
-  All Rights Reserved.
 
-  This module is free software; you can redistribute it and/or 
+  This module is free software; you can redistribute it and/or
   modify it under the same terms as Perl itself.
 
 The full text of the licenses can be found in the F<Artistic> and
