@@ -3,7 +3,7 @@ use strict;
 use lib 't';
 use vars qw( $class );
 
-use Test::More tests => 3;
+use Test::More tests => 4;
 use Data::Phrasebook;
 
 my $file = 't/05phrases.xml';
@@ -21,3 +21,7 @@ is($book->fetch('foo'), "I'm new foo.");
 my @expected = qw( DEF ONE );
 my @dicts = $book->dicts();
 is_deeply( \@dicts, \@expected );
+
+my @tkeys = qw( foo );
+my @keywords = $book->keywords();
+is_deeply( \@keywords, \@tkeys );

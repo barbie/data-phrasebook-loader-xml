@@ -6,7 +6,7 @@ use base qw( Data::Phrasebook::Loader::Base Data::Phrasebook::Debug );
 use XML::Parser;
 use IO::File;
 
-our $VERSION = '0.08';
+our $VERSION = '0.09';
 
 =head1 NAME
 
@@ -152,11 +152,12 @@ my $phrases;
 sub load
 {
     my ($class, $file, $dict) = @_;
-    my $ignore_whitespace = 0;
+    my ($ignore_whitespace,$ignore_newlines) = (0,0);
     my @dictionaries;
 
     if(ref $file eq 'HASH') {
         $ignore_whitespace = $file->{ignore_whitespace};
+        $ignore_newlines = $file->{ignore_newlines};
         $file = $file->{file};
     }
     croak "No file given as argument!" unless defined $file;
@@ -211,6 +212,9 @@ sub load
                         $phrase_value =~ s/^\s+//;
                         $phrase_value =~ s/\s+$//;
                         $phrase_value =~ s/\s*[\r\n]+\s*/ /gs;
+                    }
+                    if($ignore_newlines) {
+                        $phrase_value =~ s/[\r\n]+/ /gs;
                     }
                     $phrases->{$phrase_name} = $phrase_value;
                     $phrase_value = '';
@@ -267,9 +271,54 @@ sub dicts {
     return @{$class->{dictionaries}};
 }
 
+=head2 keywords
+
+Returns the list of keywords available.
+
+   my @dicts = $loader->keywords();
+
+=cut
+
+sub keywords {
+	my $class = shift;
+    return ()    unless($class->{phrases});
+    return keys %{$class->{phrases}};
+}
+
 1;
 
 __END__
+
+=head1 CONTINUATION LINES
+
+As a configuration option (default is off), continuation lines can be
+used via the use of the 'ignore_whitespace' or 'ignore_newlines' options 
+as follows:
+
+    my $q = Data::Phrasebook->new(
+        class  => 'Fnerk',
+        loader => 'XML',
+        file   => {
+            file => 'phrases.xml',
+            ignore_whitespace => 1,
+        }
+    );
+
+Using 'ignore_whitespace', all whitespace (including newlines) will be 
+collapsed into a single space character, with leading and trailing whitespace
+characters removed.
+
+    my $q = Data::Phrasebook->new(
+        class  => 'Fnerk',
+        loader => 'XML',
+        file   => {
+            file => 'phrases.xml',
+            ignore_newlines => 1,
+        }
+    );
+
+Using 'ignore_newlines', all newlines are removed, preserving whitespace
+around them, should this be required.
 
 =head1 SEE ALSO
 
