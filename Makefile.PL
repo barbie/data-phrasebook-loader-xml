@@ -2,8 +2,8 @@ use ExtUtils::MakeMaker;
 WriteMakefile(
     NAME            => 'Data::Phrasebook::Loader::XML',
     VERSION_FROM    => 'lib/Data/Phrasebook/Loader/XML.pm',
-    PREREQ_PM		=> {
-		'Data::Phrasebook' => '0.18',
+    PREREQ_PM       => {
+        'Data::Phrasebook' => '0.22',
         'XML::Parser'      => '0',
         'Test::More'       => '0.47',
     },

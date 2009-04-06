@@ -1,5 +1,8 @@
 # Changes log for Data::Phrasebook::Loader::XML
 
+0.08	15/06/2005
+	- upped prerequisite for Data::Phrasebook to 0.22.
+
 0.07    13/06/2005
         - Added dicts() support
 

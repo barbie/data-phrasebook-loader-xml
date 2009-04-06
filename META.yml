@@ -1,11 +1,11 @@
 # http://module-build.sourceforge.net/META-spec.html
 #XXXXXXX This is a prototype!!!  It will change in the future!!! XXXXX#
 name:         Data-Phrasebook-Loader-XML
-version:      0.07
+version:      0.08
 version_from: lib/Data/Phrasebook/Loader/XML.pm
 installdirs:  site
 requires:
-    Data::Phrasebook:              0.18
+    Data::Phrasebook:              0.22
     Test::More:                    0.47
     XML::Parser:                   0
 
