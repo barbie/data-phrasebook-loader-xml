@@ -3,7 +3,7 @@ Data::Phrasebook::Loader::XML
 
 DESCRIPTION
 
-    Abstract your queries ... with XML files!
+  Abstract your queries ... with XML files!
 
 This distribution enables the framework for abstracting common or locale data
 out of your code into a datastore. The default is within a plain text file,
