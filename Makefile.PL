@@ -10,6 +10,4 @@ WriteMakefile(
     ($] >= 5.005 ?
       (ABSTRACT_FROM => 'lib/Data/Phrasebook/Loader/XML.pm',
        AUTHOR        => 'Barbie <barbie@cpan.org>') : ()),
-    (eval($ExtUtils::MakeMaker::VERSION) >= 6.10 ?
-        ( NO_META => 1, ) : ()),
 );

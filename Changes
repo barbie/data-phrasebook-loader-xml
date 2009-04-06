@@ -1,5 +1,8 @@
 # Changes log for Data::Phrasebook::Loader::XML
 
+0.03    02 Mar 2005
+		- Removed Test::MockObject from tests. No longer needed.
+
 0.02    23 Feb 2005
         - revamped and renamed as part of the Data::Phrasebook framework
 
