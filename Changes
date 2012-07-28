@@ -4,6 +4,7 @@
         - spelling fix. (thanks to Nicholas Bamber, Florian Schlichting & 
 	  Gregor Herrmann).
         - removed License files from distro.
+        - Artistic License v2 now sole license.
 
 0.12    01/03/2007
         - Fixed META.yml typos.

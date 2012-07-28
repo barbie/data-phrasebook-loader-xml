@@ -1,11 +1,11 @@
 --- #YAML:1.0
 name:                   Data-Phrasebook-Loader-XML
-version:                0.12
+version:                0.13
 abstract:               This module provides a loader class for phrasebook implementations using XML files.
 author:
   - Barbie <barbie@cpan.org>
 
-license:                gpl
+license:                artistic_2
 distribution_type:      module
 installdirs:            site
 
@@ -24,7 +24,7 @@ build_requires:
 provides:
   Data::Phrasebook::Loader::XML:
     file:     lib/Data/Phrasebook/Loader/XML.pm
-    version:  0.12
+    version:  0.13
 no_index:
   directory:
     - t
