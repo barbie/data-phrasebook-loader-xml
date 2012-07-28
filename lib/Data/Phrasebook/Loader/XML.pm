@@ -332,7 +332,7 @@ documentation, please send an email to barbie@cpan.org or submit a bug to the
 RT system (http://rt.cpan.org/). However, it would help greatly if you are
 able to pinpoint problems or even supply a patch.
 
-Fixes are dependant upon their severity and my availablity. Should a fix not
+Fixes are dependent upon their severity and my availability. Should a fix not
 be forthcoming, please feel free to (politely) remind me.
 
 =head1 DSLIP
