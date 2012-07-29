@@ -1,5 +1,9 @@
 # Changes log for Data::Phrasebook::Loader::XML
 
+0.14	29/07/2012
+	- added Carp as a prerequisite.
+	- implemented Perl::Critic suggestions.
+
 0.13    29/07/2012
         - spelling fix. (thanks to Nicholas Bamber, Florian Schlichting & 
           Gregor Herrmann).

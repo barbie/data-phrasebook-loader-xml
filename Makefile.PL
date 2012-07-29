@@ -15,12 +15,13 @@ WriteMakefile(
     PREREQ_PM           => {
 
         # runtime prereqs
+        'Carp'                  => '0',
         'Data::Phrasebook'      => '0.24',
+        'IO::File'              => '0'
         'XML::Parser'           => '0',
 
         # build/test prereqs
         'Test::More'            => '0.70',
-        'IO::File'              => '0'
 
     }
 );

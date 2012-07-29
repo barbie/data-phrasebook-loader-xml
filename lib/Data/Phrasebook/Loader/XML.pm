@@ -6,7 +6,7 @@ use base qw( Data::Phrasebook::Loader::Base Data::Phrasebook::Debug );
 use XML::Parser;
 use IO::File;
 
-our $VERSION = '0.13';
+our $VERSION = '0.14';
 
 =head1 NAME
 
@@ -40,10 +40,6 @@ Data::Phrasebook::Loader::XML - Absract your phrases with XML.
     # keyword to phrase mapping with parameters
     $q->delimiters( qr{ \[% \s* (\w+) \s* %\] }x );
     my $phrase = $q->fetch($keyword,{this => 'that'});
-
-=head1 ABSTRACT
-
-This module provides a loader class for phrasebook implementations using XML.
 
 =head1 DESCRIPTION
 
@@ -149,8 +145,7 @@ C<data> method, to initialise the data store.
 
 my $phrases;
 
-sub load
-{
+sub load {
     my ($class, $file, $dict) = @_;
     my ($ignore_whitespace,$ignore_newlines) = (0,0);
     my @dictionaries;
@@ -282,7 +277,8 @@ Returns the list of keywords available.
 sub keywords {
     my $class = shift;
     return ()    unless($class->{phrases});
-    return sort keys %{$class->{phrases}};
+    my @keywords = sort keys %{$class->{phrases}};
+    return @keywords;
 }
 
 1;
