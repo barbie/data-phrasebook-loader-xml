@@ -335,14 +335,6 @@ able to pinpoint problems or even supply a patch.
 Fixes are dependent upon their severity and my availability. Should a fix not
 be forthcoming, please feel free to (politely) remind me.
 
-=head1 DSLIP
-
-  b - Beta testing
-  d - Developer
-  p - Perl-only
-  O - Object oriented
-  p - Standard-Perl: user may choose between GPL and Artistic
-
 =head1 AUTHOR
 
   Barbie, <barbie@cpan.org>

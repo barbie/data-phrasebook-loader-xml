@@ -13,18 +13,21 @@ DEPENDENCIES
 
 The distribution requires the following modules:
 
-  Data::Phrasebook    >= 0.18
-  XML::Parser
+  Data::Phrasebook	        >= 0.24
+  XML::Parser               >= 0
 
 For testing purposes, the following modules are required:
 
-  Test::More          >= 0.47
+  Test::More		        >= 0.70
+  IO::File		            >= 0
 
 For testing purposes, the following modules are desireable, but not essential:
 
-  Test::Pod           >= 1.00
-  Test::Pod::Coverage >= 0.08
-  Pod::Coverage
+  Test::CPAN::Meta          >= 0
+  Test::CPAN::Meta::JSON    >= 0
+  Test::Pod                 >= 1.00
+  Test::Pod::Coverage       >= 0.08
+  Pod::Coverage             >= 0
 
 INSTALLATION
 
@@ -54,14 +57,6 @@ if you are able to pinpoint problems or even supply a patch.
 
 Fixes are dependent upon their severity and my availability. Should a fix not
 be forthcoming, please feel free to (politely) remind me.
-
-DSLIP
-
-  b - Beta testing
-  d - Developer
-  p - Perl-only
-  O - Object oriented
-  p - Standard-Perl: user may choose between GPL and Artistic
 
 AUTHOR
 

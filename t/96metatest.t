@@ -4,8 +4,8 @@ use Test::More;
 plan skip_all => "Author tests not required for installation"
     unless ( $ENV{AUTOMATED_TESTING} );
 
-eval "use Test::CPAN::Meta";
-plan skip_all => "Test::CPAN::Meta required for testing META.yml" if $@;
+eval "use Test::CPAN::Meta::JSON";
+plan skip_all => "Test::CPAN::Meta::JSON required for testing META.json files" if $@;
 
 plan no_plan;
 
@@ -15,11 +15,11 @@ use Data::Phrasebook::Loader::XML;
 my $version = $Data::Phrasebook::Loader::XML::VERSION;
 
 is($meta->{version},$version,
-    'META.yml distribution version matches');
+    'META.json distribution version matches');
 
 if($meta->{provides}) {
     for my $mod (keys %{$meta->{provides}}) {
         is($meta->{provides}{$mod}{version},$version,
-            "META.yml entry [$mod] version matches");
+            "META.json entry [$mod] version matches");
     }
 }
