@@ -1,6 +1,6 @@
 # Changes log for Data::Phrasebook::Loader::XML
 
-0.15    current
+0.15    2019-10-07
         - change file dates changed to meet W3CDTF standards.
 
 0.14    2012-07-29
