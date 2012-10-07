@@ -17,7 +17,7 @@ WriteMakefile(
         # runtime prereqs
         'Carp'                  => '0',
         'Data::Phrasebook'      => '0.24',
-        'IO::File'              => '0'
+        'IO::File'              => '0',
         'XML::Parser'           => '0',
 
         # build/test prereqs

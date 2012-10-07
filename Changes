@@ -1,11 +1,14 @@
 # Changes log for Data::Phrasebook::Loader::XML
 
-0.14	29/07/2012
-	- added Carp as a prerequisite.
-	- implemented Perl::Critic suggestions.
+0.15    current
+        - change file dates changed to meet W3CDTF standards.
 
-0.13    29/07/2012
-        - spelling fix. (thanks to Nicholas Bamber, Florian Schlichting & 
+0.14    2012-07-29
+        - added Carp as a prerequisite.
+        - implemented Perl::Critic suggestions.
+
+0.13    2012-07-29
+        - spelling fix. (thanks to Nicholas Bamber, Florian Schlichting &
           Gregor Herrmann).
         - removed License files from distro.
         - Artistic License v2 now sole license.
@@ -16,11 +19,11 @@
         - added META.json
         - added Changes file tests.
 
-0.12    01/03/2007
+0.12    2007-03-01
         - Fixed META.yml typos.
         - Added META.yml test script.
 
-0.11    22/02/2007
+0.11    2007-02-22
         - Handwritten META.yml to conform to current specs.
         - Changed all instances of LICENCE to LICENSE as *apparently*, to all
           non-British users of this module, this a bug! I beg to differ -
@@ -29,38 +32,38 @@
           for interesting scripts.
         - Minor fix suggested by Perl::Critic.
 
-0.10    22/09/2005
+0.10    2005-09-22
         - Added sorting to keywords().
 
-0.09    09/08/2005
+0.09    2005-08-09
         - Upped prerequisite for Data::Phrasebook to 0.23.
         - Added keywords() support.
         - Added POD for continuation lines.
         - Added 'ignore_newlines' option.
 
-0.08    15/06/2005
+0.08    2005-06-15
         - Upped prerequisite for Data::Phrasebook to 0.22.
 
-0.07    13/06/2005
+0.07    2005-06-13
         - Added dicts() support
 
-0.06    14/05/2005
+0.06    2005-05-14
         - POD update for the use of &lt; to '<' in your phrasebook (Bob Hicks)
 
-0.05    25/03/2005
+0.05    2005-03-25
         - Added DSLIP information
         - Rewrote test scripts
         - Devel::Cover - 98.4%
 
-0.04    03/03/2005
+0.04    2005-03-03
         - POD updates.
 
-0.03    02/03/2005
+0.03    2005-03-02
         - Removed Test::MockObject from tests. No longer needed.
 
-0.02    23/02/2005
+0.02    2005-02-23
         - revamped and renamed as part of the Data::Phrasebook framework
 
-0.01    31/01/2004
+0.01    2004-01-31
         - Extracted from main Phrasebook distribution
 
