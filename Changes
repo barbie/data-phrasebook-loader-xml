@@ -2,6 +2,7 @@ Changes log for Data-Phrasebook-Loader-XML
 ==========================================
 
         - fixed license fields in META.json to be lists.
+        - added repository link to META.yml.
 
 0.15    2019-10-07
         - change file dates changed to meet W3CDTF standards.

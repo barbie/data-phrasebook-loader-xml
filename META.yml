@@ -32,7 +32,12 @@ no_index:
     - t
     - examples
 
+resources:
+  license:    http://www.perlfoundation.org/artistic_license_2_0
+  bugtracker: http://rt.cpan.org/Public/Dist/Display.html?Name=Data-Phrasebook-Loader-Ini
+  repository: http://github.com/barbie/data-phrasebook-loader-ini
+
 meta-spec:
-   version:   1.3
-   url:       http://module-build.sourceforge.net/META-spec-v1.3.html
-generated_by: Hand 1.0
+   version:   1.4
+   url:       http://module-build.sourceforge.net/META-spec-v1.4.html
+generated_by: The Hand of Barbie 1.0
