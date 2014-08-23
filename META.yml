@@ -34,8 +34,8 @@ no_index:
 
 resources:
   license:    http://www.perlfoundation.org/artistic_license_2_0
-  bugtracker: http://rt.cpan.org/Public/Dist/Display.html?Name=Data-Phrasebook-Loader-Ini
-  repository: http://github.com/barbie/data-phrasebook-loader-ini
+  bugtracker: http://rt.cpan.org/Public/Dist/Display.html?Name=Data-Phrasebook-Loader-XML
+  repository: http://github.com/barbie/data-phrasebook-loader-xml
 
 meta-spec:
    version:   1.4
