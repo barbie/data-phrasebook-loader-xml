@@ -1,12 +1,19 @@
 package Data::Phrasebook::Loader::XML;
+
 use strict;
 use warnings FATAL => 'all';
-use Carp qw( croak );
+
+our $VERSION = '0.15';
+
+#--------------------------------------------------------------------------
+
 use base qw( Data::Phrasebook::Loader::Base Data::Phrasebook::Debug );
+
+use Carp qw( croak );
 use XML::Parser;
 use IO::File;
 
-our $VERSION = '0.15';
+#--------------------------------------------------------------------------
 
 =head1 NAME
 
