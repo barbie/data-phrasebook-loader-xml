@@ -3,7 +3,7 @@ package Data::Phrasebook::Loader::XML;
 use strict;
 use warnings FATAL => 'all';
 
-our $VERSION = '0.15';
+our $VERSION = '0.16';
 
 #--------------------------------------------------------------------------
 

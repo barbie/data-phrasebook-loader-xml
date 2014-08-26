@@ -1,6 +1,6 @@
 {
     "name": "Data-Phrasebook-Loader-XML",
-    "version": "0.15",
+    "version": "0.16",
     "abstract": "Loader class for phrasebook implementations using XML files",
     "author": [
         "Barbie (BARBIE) <barbie@cpan.org>"
@@ -47,7 +47,7 @@
     "provides": {
         "Data::Phrasebook::Loader::XML": {
             "file": "lib/Data/Phrasebook/Loader/XML.pm",
-            "version": "0.15"
+            "version": "0.16"
         }
     },
     "no_index": {
